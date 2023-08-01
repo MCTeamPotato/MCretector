@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[43,)"
-license = "MIT"
+license = "LGPL-v3"
 
 [[mods]]
 modId = "mcretector"
