@@ -1,0 +1,12 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+license = "MIT"
+
+[[mods]]
+modId = "mcretector"
+version = "${version}"
+displayName = "MCretector"
+authors="TeamPotato"
+description = '''
+
+'''
