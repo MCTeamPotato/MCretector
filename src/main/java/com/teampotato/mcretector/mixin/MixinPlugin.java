@@ -42,7 +42,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (!MCREATOR_MODS.isEmpty()) {
             LOGGER.fatal("Possible MCreator mod(s) found:");
             MCREATOR_MODS.forEach(LOGGER::fatal);
-            return;
         }
         LOGGER.info("MCreator mods detection ends.");
     }
