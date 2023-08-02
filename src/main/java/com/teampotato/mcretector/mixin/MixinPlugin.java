@@ -1,7 +1,6 @@
 package com.teampotato.mcretector.mixin;
 
 import com.teampotato.mcretector.MCretector;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,19 +31,17 @@ public class MixinPlugin implements IMixinConfigPlugin {
                     JarEntry entry = entries.nextElement();
                     String entryName = entry.getName();
 
-                    if (entry.isDirectory() && (entryName.contains("mcreator") || entryName.contains("procedures"))) {
+                    if (entry.isDirectory() && (entryName.contains("mcreator") || entryName.contains("procedures")) && !MCREATOR_MODS.contains(jarFilePath)) {
                         MCREATOR_MODS.add(jarFilePath);
-                        LOGGER.fatal("Possible MCreator mod found: " + jarFilePath);
                     }
                 }
             } catch (IOException e) {
                 LOGGER.fatal("Failed to check " + jarFilePath + ", try to restart your computer!");
-                Minecraft.getInstance().stop();
             }
         });
-        if (!MCREATOR_MODS.isEmpty() && FMLLoader.getDist().isClient()) {
-            LOGGER.fatal("Possible MCreator mod(s) found. Check latest log for details.");
-            Minecraft.getInstance().stop();
+        if (!MCREATOR_MODS.isEmpty()) {
+            LOGGER.fatal("Possible MCreator mod(s) found:");
+            MCREATOR_MODS.forEach(LOGGER::fatal);
             return;
         }
         LOGGER.info("MCreator mods detection ends.");

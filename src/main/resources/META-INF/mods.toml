@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion = "[36,)"
 license = "LGPL-v3"
 
 [[mods]]
