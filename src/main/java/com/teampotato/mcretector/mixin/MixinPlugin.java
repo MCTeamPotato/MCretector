@@ -2,6 +2,7 @@ package com.teampotato.mcretector.mixin;
 
 import com.teampotato.mcretector.MCretector;
 import net.minecraftforge.fml.loading.FMLLoader;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.tree.ClassNode;
@@ -35,8 +36,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
                         MCREATOR_MODS.add(jarFilePath);
                     }
                 }
-            } catch (IOException e) {
-                LOGGER.fatal("Failed to check " + jarFilePath + ", try to restart your computer!");
+            } catch (IOException exception) {
+                LOGGER.fatal("Failed to check " + jarFilePath + ".");
+                LOGGER.log(Level.FATAL, "Tried to detect " + iModFileInfo.moduleName() + " mod but failed", exception);
             }
         });
         if (!MCREATOR_MODS.isEmpty()) {
